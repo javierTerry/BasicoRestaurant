@@ -2,7 +2,9 @@ package com.restaurant.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.restaurant.dao.AdminDao;
 import com.restaurant.model.Admin;
+import com.restaurant.model.Reservacion;
 
 import java.text.ParseException;
 
 public class AdminController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/admin.jsp";
+    private static String HOME = "/public/home.jsp";
     private static String LIST_USER = "/listAdmin.jsp";
     private AdminDao dao;
 
@@ -36,15 +39,31 @@ public class AdminController extends HttpServlet {
             forward = LIST_USER;
             request.setAttribute("users", dao.getAllAdmins());    
         } else if (action.equalsIgnoreCase("edit")){
-            forward = INSERT_OR_EDIT;
+            forward = HOME;
             int userId = Integer.parseInt(request.getParameter("userId"));
             Admin user = dao.getAdminById(userId);
             request.setAttribute("user", user);
         } else if (action.equalsIgnoreCase("listAdmin")){
-            forward = LIST_USER;
+            forward = "/public/home.jsp";
             request.setAttribute("users", dao.getAllAdmins());
+        } else if (action.equalsIgnoreCase("listReservacion")){
+        	List<Reservacion> listReservacion = new ArrayList<Reservacion>();
+        	Reservacion reservacion = new Reservacion();
+        	reservacion.setNombre("JAvier");
+        	listReservacion.add(reservacion);
+            forward = "/public/listReservacion.jsp";
+            
+            request.setAttribute("reservaciones", reservacion);
+        } else if (action.equalsIgnoreCase("adminMenu")){
+        	List<Reservacion> listReservacion = new ArrayList<Reservacion>();
+        	Reservacion reservacion = new Reservacion();
+        	reservacion.setNombre("JAvier");
+        	listReservacion.add(reservacion);
+            forward = "/public/adminMenu.jsp";
+            
+            request.setAttribute("reservaciones", reservacion);
         } else {
-            forward = INSERT_OR_EDIT;
+            forward = HOME;
         }
 
         RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -52,28 +71,23 @@ public class AdminController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Admin user = new Admin();
-        user.setFirstName(request.getParameter("firstName"));
-        user.setLastName(request.getParameter("lastName"));
-        try {
-            Date dob = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("dob"));
-            user.setDob(dob);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        user.setEmail(request.getParameter("email"));
-        String userid = request.getParameter("userid");
-        if(userid == null || userid.isEmpty())
-        {
-            dao.addAdmin(user);
-        }
-        else
-        {
-            user.setAdminid(Integer.parseInt(userid));
-            dao.updateAdmin(user);
-        }
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("users", dao.getAllAdmins());
+    	AdminDao dao = new AdminDao();
+        Reservacion reservacion = new Reservacion();
+        String noPersonas =  (request.getParameter("numPersonas").isEmpty()) ? "1" : request.getParameter("numPersonas") ;
+        String telefono = (request.getParameter("telefono").isEmpty()) ? "1" : request.getParameter("telefono") ;
+        
+        
+        reservacion.setNombre(request.getParameter("name"));
+        reservacion.setEmail(request.getParameter("email"));
+        reservacion.setFecha(request.getParameter("date"));
+        reservacion.setHoraReservacion(request.getParameter("horario"));
+        reservacion.setNoPersonas(Integer.parseInt(noPersonas));
+       // reservacion.setTelefono(Integer.parseInt(telefono));
+        
+        System.out.println(reservacion.toString());
+        dao.reservacionSave(reservacion);
+        RequestDispatcher view = request.getRequestDispatcher(HOME);
+        //request.setAttribute("users", dao.getAllAdmins());
         view.forward(request, response);
     }
 }

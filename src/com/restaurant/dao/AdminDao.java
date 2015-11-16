@@ -1,5 +1,8 @@
 package com.restaurant.dao;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,15 +11,41 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.restaurant.model.Admin;
+import com.restaurant.model.Reservacion;
 //import com.daniel.util.DbUtil;
 
 public class AdminDao {
 
     private Connection connection;
-
+    private String home = System.getProperty("user.home");
+    private String archivoReservacion = "reservacion.txt";
     public AdminDao() {
         //connection = DbUtil.getConnection();
     }
+    
+    public void writeFile(String cadena) {
+    	 try {
+             // Assume default encoding.
+             FileWriter fileWriter =
+                 new FileWriter(home + "/"+archivoReservacion,true);
+
+             // Always wrap FileWriter in BufferedWriter.
+             BufferedWriter bufferedWriter =
+                 new BufferedWriter(fileWriter);
+             bufferedWriter.write(cadena+"\n");
+
+             // Always close files.
+             bufferedWriter.close();
+         }
+         catch(IOException ex) {
+             System.out.println(
+                 "Error writing to file '"
+                 + archivoReservacion + "'");
+             // Or we could just do this:
+             // ex.printStackTrace();
+         }
+		
+	}
 
     public void addAdmin(Admin admin) {
         try {
@@ -106,5 +135,10 @@ public class AdminDao {
         }
 
         return admin;
+    }
+    
+    public void reservacionSave(Reservacion reservacion){
+    	this.writeFile(reservacion.toString());
+    	
     }
 }
