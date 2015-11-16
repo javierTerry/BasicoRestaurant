@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import = "java.sql.Timestamp" %>
+<% java.util.Date date = new java.util.Date();%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
 <div class="page_spinner"></div>  
 <div class="main">
     <div class="center"> 
-   <!--header -->                   
+   <!--header -->                    
  <div class="headerHolder">
        <header>
        <div class="logoHolder">
@@ -61,10 +62,14 @@
                                     </ul>
 
                             </li>
-                                <li><a href="#!/pageServices"><span class="overPlane"></span><span class="mText">services</span></a></li>
-                             <li><a href="#!/pageGallery"><span class="overPlane"></span><span class="mText">gallery</span></a></li>
-                             <li><a href="#!/pagePrivacy"><span class="overPlane"></span><span class="mText">privacy</span></a></li>
-                             <li><a href="#!/pageContact"><span class="overPlane"></span><span class="mText">reservacion</span></a></li>
+                        	<li><a href="#!/pageServices"><span class="overPlane"></span><span class="mText">Servicio</span></a>
+                        		<ul class="submenu_1">
+                               	   <li><a href="AdminController?action=listReservacion">Mesas</a></li>
+                               	   <li><a href="#!/pageComanda">Comanda</a></li>
+                             	</ul>
+                        	</li>
+                            <li><a href="#!/pageGallery"><span class="overPlane"></span><span class="mText">gallery</span></a></li>
+                            <li><a href="#!/pageContact"><span class="overPlane"></span><span class="mText">Reservacion</span></a></li>
 					   </ul>
 				    </nav>
                  </div> 
@@ -189,30 +194,6 @@
 					</li>
                    <li id="pageGallery">
                     </li>
-                    
-                    <li id="pagePrivacy">
-                    	   <div class="box">
-                                <div class="closePlane">
-                                    <a class="closeButton" href="#!/pageGallery"><img src="images/closeIcon.png" alt=""></a>
-                             </div>
-                            <div class="containerContent">
-                            <h2>Privacy Policy</h2>
-                                <div class="col1">
-                                    <div class="Btns1">
-                                        <a href="#" class="upBtn"></a>
-                                        <a href="#" class="downBtn"></a>
-                                    </div>
-                                    <div class="scroll1">
-                                       
-                                        <p class="padBot4">Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                        <p class="padBot4">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus. Duis autem vel eum iriure dolor in hendrerit.</p>
-                                        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                    </div>
-                                </div> 
-                            </div>
-                       </div>
-                    </li>
-                    
                     <li id="pageContact">
 					   <div class="box">
                          <div class="closePlane">
@@ -287,6 +268,82 @@
                         </div>
                        </div>	
 					</li>
+					
+					<!-- CReacion de una coamnda -->
+					<li id="pageComanda">
+					   <div class="box">
+                           
+                          <div class="containerContent">
+                            <div class=" magRight3">
+                            <h2>Comanda  </h2>
+                            <% Timestamp dateT = new Timestamp(date.getTime());
+                            	String ticket = dateT.toString();
+                            %>
+                            <font color="white"> <h5>Ticket <%=ticket %> </h5> </font>
+                                <div class="wrapper">
+                                        <form action="AdminController?action=reservacion" id="ContactForm" method="post">	
+                                        	
+       								 		<fieldset class="left">	
+       								 		<table style="width:100%" bgcolor="#00FF00" border="1">
+												<tr bgcolor="#00FF00">
+												    <th bgcolor="#5D7B9D" style="width:60%"><font color="#fff">Descripcion</font></th>
+												    <th bgcolor="#5D7B9D" style="width:15%"><font color="#fff">Cantidad</font></th>
+												    <th bgcolor="#5D7B9D" style="width:25%"><font color="#fff">Pecio</font></th>
+												    
+											  	</tr>
+			                                    <tr>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+											  	<tr>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+											  	<tr>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+											  	<tr>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+											  	<tr>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+			                              	</table>
+                                            <span class="title1">Nota a cosina:</span>
+                                               <span class="bg"><input type="tel" id="date" name="date" placeholder="Discripcion larga para cosina"></span>
+                                             
+                                                    
+                                                         
+                                                         
+                                                         <div class="formButtons">
+                                                          <div class="formBtn">
+                                                                <input type="submit" value="Submit">
+                                                          </div>
+                                                          <div class="formBtn">
+                                                                 <a href="#" data-type="reset" class="moreButton">Clear</a>
+                                                          </div>
+                                                         </div> 
+    								  		    </fieldset>
+                                            </form>
+                                    </div>
+                            </div>  
+                        </div>
+                       </div>	
+					</li>
+					
                   
                 	<li id="pageMore">
                     	 <div class="box">
