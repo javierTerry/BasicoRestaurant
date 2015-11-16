@@ -47,21 +47,12 @@ public class AdminController extends HttpServlet {
             forward = "/public/home.jsp";
             request.setAttribute("users", dao.getAllAdmins());
         } else if (action.equalsIgnoreCase("listReservacion")){
-        	List<Reservacion> listReservacion = new ArrayList<Reservacion>();
-        	Reservacion reservacion = new Reservacion();
-        	reservacion.setNombre("JAvier");
-        	listReservacion.add(reservacion);
-            forward = "/public/listReservacion.jsp";
-            
-            request.setAttribute("reservaciones", reservacion);
+        	List<Reservacion> reservaciones = dao.listaReservacion();
+       
+        	forward = "/public/listReservacion.jsp";
+            request.setAttribute("reservaciones", reservaciones);
         } else if (action.equalsIgnoreCase("adminMenu")){
-        	List<Reservacion> listReservacion = new ArrayList<Reservacion>();
-        	Reservacion reservacion = new Reservacion();
-        	reservacion.setNombre("JAvier");
-        	listReservacion.add(reservacion);
-            forward = "/public/adminMenu.jsp";
-            
-            request.setAttribute("reservaciones", reservacion);
+        	
         } else {
             forward = HOME;
         }

@@ -1,6 +1,8 @@
 package com.restaurant.dao;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -44,8 +46,20 @@ public class AdminDao {
              // Or we could just do this:
              // ex.printStackTrace();
          }
-		
 	}
+    public BufferedReader readFile(String archivo){
+    	BufferedReader bfFile = null;
+    	try{
+    		bfFile = new BufferedReader(new FileReader(home + "/"+ archivo));
+     	      
+    	} catch(IOException ex) {
+    		System.out.println(
+                    "Error writing to file '"
+                    + archivoReservacion + "'");
+    	}
+		return bfFile;
+    
+    }
 
     public void addAdmin(Admin admin) {
         try {
@@ -141,4 +155,35 @@ public class AdminDao {
     	this.writeFile(reservacion.toString());
     	
     }
+    
+    public List<Reservacion> listaReservacion() {
+    	BufferedReader bfFile = null;
+    	List<Reservacion> reservaciones = new ArrayList<Reservacion>();
+    	try{
+    		bfFile = this.readFile(archivoReservacion);
+  	        String dataRow; //= bfFile.readLine();
+  	     
+  	    int i = 0; 
+	      while ((dataRow = bfFile.readLine()) != null ){
+	          Reservacion reservacion = new Reservacion();
+	    	  i++;
+	          
+	          String[] dataArray = dataRow.split(",");
+	          reservacion.setNombre(dataArray[0]);
+	          reservacion.setEmail(dataArray[1]);
+	          reservacion.setTelefono( Integer.parseInt(dataArray[2]));
+	          reservacion.setNoPersonas(Integer.parseInt(dataArray[3]));
+	          reservacion.setHoraReservacion(dataArray[4]);
+	          reservacion.setFecha(dataArray[5]);
+	          reservaciones.add(reservacion);
+	        }
+    	} catch(IOException ex) {
+    		System.out.println(
+                    "Error writing to file '"
+                    + archivoReservacion + "'");
+    	}  
+    	return reservaciones;
+    	
+    }
+        
 }

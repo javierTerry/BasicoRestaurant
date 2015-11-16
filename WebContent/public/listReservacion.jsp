@@ -1,5 +1,10 @@
-<%@page import="com.restaurant.model.Reservacion"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List" %>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import="com.restaurant.model.Reservacion"%>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +30,7 @@
 	<![endif]-->
 </head>
 <body>
-<%Reservacion reservaciones=(Reservacion)request.getAttribute("reservaciones"); %>
+<% List<Reservacion> reservaciones = (List<Reservacion>) request.getAttribute("reservaciones"); %>
 <div class="glob">
 <div class="page_spinner"></div>  
 <div class="main">
@@ -70,7 +75,23 @@
                             <div class="containerContent">
                                 <h2>Lista de reservaciones</h2>
                                 <div class="col1 padBot1">
-                                <p> <%= reservaciones.getNombre() %></p>
+                                <table style="width:100%">
+									<tr>
+									    <th>Nombre</th>
+									    <th>Horario</th> 
+									    <th>Fecha</th>
+									    <th>No de Personas</th>
+								  	</tr>
+                                <% for(Reservacion reservacion : reservaciones) { %>
+                                    <tr>
+									    <td><%= reservacion.getNombre()%></td>
+									    <td><%= reservacion.getHoraReservacion()%></td> 
+									    <td><%= reservacion.getFecha() %></td>
+									    <td><%= reservacion.getNoPersonas()%></td>
+								  	</tr>
+                              	<%	}%>
+                              	</table>
+                               
                                     <figure class="_fig1">
                                         <img src="images/page1pic1.png" alt="">
                                     </figure>
