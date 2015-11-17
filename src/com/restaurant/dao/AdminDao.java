@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.restaurant.model.Admin;
+import com.restaurant.model.Comanda;
 import com.restaurant.model.Reservacion;
 //import com.daniel.util.DbUtil;
 
@@ -21,15 +22,16 @@ public class AdminDao {
     private Connection connection;
     private String home = System.getProperty("user.home");
     private String archivoReservacion = "reservacion.txt";
+    private String archivoComanda = "comanda.txt";
     public AdminDao() {
         //connection = DbUtil.getConnection();
     }
     
-    public void writeFile(String cadena) {
+    public void writeFile(String cadena, String file) {
     	 try {
              // Assume default encoding.
              FileWriter fileWriter =
-                 new FileWriter(home + "/"+archivoReservacion,true);
+                 new FileWriter(home + "/"+file,true);
 
              // Always wrap FileWriter in BufferedWriter.
              BufferedWriter bufferedWriter =
@@ -152,7 +154,7 @@ public class AdminDao {
     }
     
     public void reservacionSave(Reservacion reservacion){
-    	this.writeFile(reservacion.toString());
+    	this.writeFile(reservacion.toString(),archivoReservacion);
     	
     }
     
@@ -183,6 +185,11 @@ public class AdminDao {
                     + archivoReservacion + "'");
     	}  
     	return reservaciones;
+    	
+    }
+    
+    public void comandaSave(Comanda comanda){
+    	this.writeFile(comanda.toString(),archivoComanda);
     	
     }
         

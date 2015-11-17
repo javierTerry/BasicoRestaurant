@@ -281,52 +281,48 @@
                             %>
                             <font color="white"> <h5>Ticket <%=ticket %> </h5> </font>
                                 <div class="wrapper">
-                                        <form action="AdminController?action=reservacion" id="ContactForm" method="post">	
+                                        <form action="AdminController?action=comanda" id="ComandaForm" method="post">	
                                         	
        								 		<fieldset class="left">	
        								 		<table style="width:100%" bgcolor="#00FF00" border="1">
 												<tr bgcolor="#00FF00">
 												    <th bgcolor="#5D7B9D" style="width:60%"><font color="#fff">Descripcion</font></th>
 												    <th bgcolor="#5D7B9D" style="width:15%"><font color="#fff">Cantidad</font></th>
-												    <th bgcolor="#5D7B9D" style="width:25%"><font color="#fff">Pecio</font></th>
+												    <th bgcolor="#5D7B9D" style="width:25%"><font color="#fff">Precio</font></th>
 												    
 											  	</tr>
 			                                    <tr>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" id="descripcion1" name="descripcion1" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="cantidad1" name="cantidad1" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="precio1" name="precio1" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" id="descripcion2" name="descripcion2" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="cantidad2" name="cantidad2" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="precio2" name="precio2" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" id="descripcion3" name="descripcion3" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="cantidad3" name="cantidad3" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="precio3" name="precio3" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
-												    
+												    <td><span class="bg"><input type="text" id="descripcion4" name="descripcion4" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="cantidad4" name="cantidad4" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="precio4" name="precio4" size="20" maxlength="20" placeholder="Precio"></span></td>
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="name" name="name" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="name" name="name" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" id="descripcion5" name="descripcion5" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" id="cantidad5" name="cantidad" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" id="precio5" name="precio5" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 			                              	</table>
                                             <span class="title1">Nota a cosina:</span>
-                                               <span class="bg"><input type="tel" id="date" name="date" placeholder="Discripcion larga para cosina"></span>
-                                             
-                                                    
-                                                         
+                                               <span class="bg"><input type="tel" id="notaCosina" name="notaCosina" placeholder="Discripcion larga para cosina"></span>
                                                          
                                                          <div class="formButtons">
                                                           <div class="formBtn">

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.restaurant.dao.AdminDao;
 import com.restaurant.model.Admin;
+import com.restaurant.model.Comanda;
 import com.restaurant.model.Reservacion;
 
 import java.text.ParseException;
@@ -62,21 +63,40 @@ public class AdminController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	AdminDao dao = new AdminDao();
-        Reservacion reservacion = new Reservacion();
-        String noPersonas =  (request.getParameter("numPersonas").isEmpty()) ? "1" : request.getParameter("numPersonas") ;
-        String telefono = (request.getParameter("telefono").isEmpty()) ? "1" : request.getParameter("telefono") ;
-        
-        
-        reservacion.setNombre(request.getParameter("name"));
-        reservacion.setEmail(request.getParameter("email"));
-        reservacion.setFecha(request.getParameter("date"));
-        reservacion.setHoraReservacion(request.getParameter("horario"));
-        reservacion.setNoPersonas(Integer.parseInt(noPersonas));
-       // reservacion.setTelefono(Integer.parseInt(telefono));
-        
-        System.out.println(reservacion.toString());
-        dao.reservacionSave(reservacion);
+    	String action = request.getParameter("action");
+    	
+    	if (action.equalsIgnoreCase("comanda") ){
+    		AdminDao dao = new AdminDao();
+    		Comanda comanda = new Comanda();
+    		String sCantidad =  (request.getParameter("cantidad1").isEmpty()) ? "1" : request.getParameter("cantidad1") ;
+    		String sPrecio =  (request.getParameter("precio1").isEmpty()) ? "1" : request.getParameter("precio1") ;
+    		int cantidad = Integer.parseInt(sCantidad);
+    		int precio = Integer.parseInt(sPrecio);
+    		
+    		comanda.setDescripcion(request.getParameter("descripcion1"));																																																																																																																																																																																																																																																																																																							
+    		comanda.setCantidad(cantidad);
+    		comanda.setPrecio(precio);
+    		comanda.setSubTotal(cantidad * precio);
+    		comanda.setNotaCosina(request.getParameter("notaCosina"));
+    		dao.comandaSave(comanda);
+    		
+    	} else {
+    		AdminDao dao = new AdminDao();
+            Reservacion reservacion = new Reservacion();
+            String noPersonas =  (request.getParameter("numPersonas").isEmpty()) ? "1" : request.getParameter("numPersonas") ;
+            String telefono = (request.getParameter("telefono").isEmpty()) ? "1" : request.getParameter("telefono") ;
+            
+            
+            reservacion.setNombre(request.getParameter("name"));
+            reservacion.setEmail(request.getParameter("email"));
+            reservacion.setFecha(request.getParameter("date"));
+            reservacion.setHoraReservacion(request.getParameter("horario"));
+            reservacion.setNoPersonas(Integer.parseInt(noPersonas));
+           // reservacion.setTelefono(Integer.parseInt(telefono));
+            
+            dao.reservacionSave(reservacion);
+    	}
+    	
         RequestDispatcher view = request.getRequestDispatcher(HOME);
         //request.setAttribute("users", dao.getAllAdmins());
         view.forward(request, response);
