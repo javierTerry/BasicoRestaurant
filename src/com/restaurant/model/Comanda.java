@@ -6,7 +6,7 @@ public class Comanda {
 	private int precio = 1;
 	private int cantidad = 1;
 	private int subTotal = 1;
-	private String notaCosina = "";
+	private String notaCosina = "Sin nota";
 	
 	public String getDescripcion() {
 		return descripcion;
@@ -50,7 +50,7 @@ public class Comanda {
 
 	@Override
     public String toString() {
-        return descripcion + "," + precio + "," + cantidad + "," + subTotal + "," + notaCosina ;
+        return descripcion + "," + precio + "," + cantidad + "," + subTotal ;
     }
 	
 

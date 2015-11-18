@@ -70,13 +70,24 @@
                             <div class="containerContent">
                                 <h2>Menu</h2>
                                 <div class="col1 padBot1">
-                                <p> <%= reservaciones.getNombre() %></p>
-                                    <figure class="_fig1">
-                                        <img src="images/page1pic1.png" alt="">
-                                    </figure>
-                                    <div class="col2">
-                                        <p>Cream is one of <a class="_link1" href="http://blog.templatemonster.com/category/free-website-templates/">free website templates</a> created by TemplateMonster.com team. This website template is optimized for 1280X1024 screen resolution. It is also XHTML &amp; CSS valid. The PSD source files of this <a class="_link1" href="http://blog.templatemonster.com/2012/05/07/free-full-javascript-animated-template-web-design-studio/">Cream Template</a> are available for free for the registered members of TemplateMonster.com. Feel free to get them!</p>
-                                    </div>
+                                <table style="width:100%">
+									<tr>
+									    <th><font color="white">ID Producto</th>
+									    <th><font color="white">Descripcion</th> 
+									    <th><font color="white">Precio</th>
+									    <th><font color="white">Acciones </font></th>
+								  	</tr>
+                                <% for(Reservacion reservacion : reservaciones) { %>
+                                    <tr>
+                                    	
+									    <td><font color="white"><%= reservacion.getNombre()%> </td>
+									    <td><font color="white"><%= reservacion.getHoraReservacion()%></td> 
+									    <td><font color="white"><%= reservacion.getFecha() %></td>
+									    <td><font color="white">Borrar Editar</td>
+									    </font>
+								  	</tr>
+                              	<%	}%>
+                              	</table>
                                 </div>
                             </div>
                        </div>	

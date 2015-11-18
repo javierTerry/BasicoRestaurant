@@ -58,13 +58,13 @@
                                     <ul class="submenu_1">
                                 	   <li><a href="AdminController?action=listReservacion">Reservaciones</a></li>
                                 	   <li><a href="AdminController?action=adminMenu">Menu</a></li>
-                                	   <li><a href="#!/pageMore">Conta</a></li>
+                                	   <li><a href="AdminController?action=conta">Conta</a></li>
                                     </ul>
 
                             </li>
                         	<li><a href="#!/pageServices"><span class="overPlane"></span><span class="mText">Servicio</span></a>
                         		<ul class="submenu_1">
-                               	   <li><a href="AdminController?action=listReservacion">Mesas</a></li>
+                               	   <li><a href="#">Mesas</a></li>
                                	   <li><a href="#!/pageComanda">Comanda</a></li>
                              	</ul>
                         	</li>
@@ -196,13 +196,10 @@
                     </li>
                     <li id="pageContact">
 					   <div class="box">
-                         <div class="closePlane">
-                                <a class="closeButton" href="#!/pageGallery"><img src="images/closeIcon.png" alt=""></a>
-                            </div>
                             
                           <div class="containerContent">
                             <div class="col5 magRight3">
-                            <h2>feedback</h2>
+                            <h2>Reservaciones</h2>
                                 <div class="wrapper">
                                         <form action="AdminController?action=reservacion" id="ContactForm" method="post">	
                                         <div class="success"> Contact form submitted!&nbsp;We will be in touch soon.</div>	
@@ -281,8 +278,9 @@
                             %>
                             <font color="white"> <h5>Ticket <%=ticket %> </h5> </font>
                                 <div class="wrapper">
-                                        <form action="AdminController?action=comanda" id="ComandaForm" method="post">	
-                                        	
+                                        <form action="AdminController?action=comanda" id="ComandaForm" method="post">
+                                        		
+                                        	<input type="text" id="ticket" name="ticket" style="visibility: hidden">
        								 		<fieldset class="left">	
        								 		<table style="width:100%" bgcolor="#00FF00" border="1">
 												<tr bgcolor="#00FF00">
@@ -321,9 +319,6 @@
 												    
 											  	</tr>
 			                              	</table>
-                                            <span class="title1">Nota a cosina:</span>
-                                               <span class="bg"><input type="tel" id="notaCosina" name="notaCosina" placeholder="Discripcion larga para cosina"></span>
-                                                         
                                                          <div class="formButtons">
                                                           <div class="formBtn">
                                                                 <input type="submit" value="Submit">

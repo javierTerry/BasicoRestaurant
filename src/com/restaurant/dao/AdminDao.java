@@ -192,5 +192,34 @@ public class AdminDao {
     	this.writeFile(comanda.toString(),archivoComanda);
     	
     }
+    
+    public List<Comanda> contabilidad() {
+    	BufferedReader bfFile = null;
+    	List<Comanda> comandas = new ArrayList<Comanda>();
+    	try{
+    		bfFile = this.readFile(archivoComanda);
+  	        String dataRow;
+  	     
+  	    int i = 0; 
+  	  
+	      while ((dataRow = bfFile.readLine()) != null ){
+	          Comanda comanda = new Comanda();
+	    	  i++;
+	          
+	          String[] dataArray = dataRow.split(",");
+	          comanda.setDescripcion(dataArray[0]);
+	          comanda.setPrecio(Integer.parseInt(dataArray[1]));
+	          comanda.setCantidad( Integer.parseInt(dataArray[2]));
+	          comanda.setSubTotal(Integer.parseInt(dataArray[3]));
+	          comandas.add(comanda);
+	        }
+    	} catch(IOException ex) {
+    		System.out.println(
+                    "Error writing to file '"
+                    + archivoReservacion + "'");
+    	}  
+    	return comandas;
+    	
+    }
         
 }

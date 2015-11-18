@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
-<%@ page import="com.restaurant.model.Reservacion"%>
+<%@ page import="com.restaurant.model.Comanda"%>
 
 
 
@@ -30,7 +30,7 @@
 	<![endif]-->
 </head>
 <body>
-<% List<Reservacion> reservaciones = (List<Reservacion>) request.getAttribute("reservaciones"); %>
+<% List<Comanda> comandas = (List<Comanda>) request.getAttribute("comandas"); %>
 <div class="glob">
 <div class="page_spinner"></div>  
 <div class="main">
@@ -60,7 +60,7 @@
 		                  <li >
 		                  	<a href="http://localhost:8080/BasicoRestaurant/" ><span class="mText">back</span></a> </br></br>
 		                  	<span class="mText">Admin</span>
-		                  	</br><span class="mText">Reservaciones</span>
+		                  	</br><span class="mText">Comandas</span>
 		                  </li>
 		   			</ul>
 				</nav>
@@ -73,22 +73,22 @@
                      <li id="pageAbout">
 					   <div class="box">
                             <div class="containerContent">
-                                <h2>Lista de reservaciones</h2>
+                                <h2>Lista de comandas</h2>
                                 <div class="col1 padBot1">
                                 <table style="width:100%">
 									<tr>
-									    <th><font color="white">Nombre</th>
-									    <th><font color="white">Horario</th> 
-									    <th><font color="white">Fecha</th>
-									    <th><font color="white">No de Personas </font></th>
+									    <th><font color="white">Descripcion</th>
+									    <th><font color="white">Cantidad</th> 
+									    <th><font color="white">Precio</th>
+									    <th><font color="white">Subtotal </font></th>
 								  	</tr>
-                                <% for(Reservacion reservacion : reservaciones) { %>
+                                <% for(Comanda comanda : comandas) { %>
                                     <tr>
                                     	
-									    <td><font color="white"><%= reservacion.getNombre()%> </td>
-									    <td><font color="white"><%= reservacion.getHoraReservacion()%></td> 
-									    <td><font color="white"><%= reservacion.getFecha() %></td>
-									    <td><font color="white"><%= reservacion.getNoPersonas()%></td>
+									    <td><font color="white"><%= comanda.getDescripcion()%> </td>
+									    <td><font color="white"><%= comanda.getCantidad()%></td> 
+									    <td><font color="white"><%= comanda.getPrecio() %></td>
+									    <td><font color="white"><%= comanda.getSubTotal()%></td>
 									    </font>
 								  	</tr>
                               	<%	}%>
