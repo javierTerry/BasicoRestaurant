@@ -86,7 +86,7 @@ public class AdminController extends HttpServlet {
         		int subtotal = cantidad * precio;
         		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+subtotal);
         		comanda.setDescripcion(request.getParameter("descripcion"+i));																																																																																																																																																																																																																																																																																																							
-        		//comanda.setCantidad(cantidad);
+        		comanda.setCantidad(cantidad);
         		//comanda.setPrecio(precio);
         		//comanda.setSubTotal(subtotal);
         		System.out.println(request.getParameter("notaCosina"));
