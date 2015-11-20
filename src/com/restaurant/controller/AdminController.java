@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.restaurant.dao.AdminDao;
 import com.restaurant.model.Admin;
 import com.restaurant.model.Comanda;
+import com.restaurant.model.Menu;
 import com.restaurant.model.Reservacion;
 
 public class AdminController extends HttpServlet {
@@ -32,17 +33,10 @@ public class AdminController extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")){
             int userId = Integer.parseInt(request.getParameter("userId"));
-            dao.deleteAdmin(userId);
+            //dao.deleteAdmin(userId);
             forward = LIST_USER;
-            request.setAttribute("users", dao.getAllAdmins());    
-        } else if (action.equalsIgnoreCase("edit")){
-            forward = HOME;
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            Admin user = dao.getAdminById(userId);
-            request.setAttribute("user", user);
-        } else if (action.equalsIgnoreCase("listAdmin")){
-            forward = "/public/home.jsp";
-            request.setAttribute("users", dao.getAllAdmins());
+ //           request.setAttribute("users", dao.getAllAdmins());    
+ 
         } else if (action.equalsIgnoreCase("listReservacion")){
         	List<Reservacion> reservaciones = dao.listaReservacion();
        
@@ -58,9 +52,12 @@ public class AdminController extends HttpServlet {
             request.setAttribute("comandas", comandas);
             request.setAttribute("total", total);
         } else if (action.equalsIgnoreCase("adminMenu")){
-        	
+        	Menu menu = new Menu();
+        	List<Menu> menus = dao.menuRegristado();
         	forward = "/public/adminMenu.jsp";
             request.setAttribute("mensajeError", "no hay menu disponible");
+            request.setAttribute("accionAgregar", "agregar");
+            request.setAttribute("menus", menus);
         	
         } else {
             forward = HOME;
@@ -75,6 +72,7 @@ public class AdminController extends HttpServlet {
     	String action = request.getParameter("action");
     	
     	if (action.equalsIgnoreCase("comanda") ){
+    		String ticket = request.getParameter("ticket");
     		
     		for (int i = 1 ; i <6 ; i++){
     			AdminDao dao = new AdminDao();
@@ -84,13 +82,11 @@ public class AdminController extends HttpServlet {
         		int cantidad = Integer.parseInt(sCantidad);
         		int precio = Integer.parseInt(sPrecio);
         		int subtotal = cantidad * precio;
-        		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+subtotal);
         		comanda.setDescripcion(request.getParameter("descripcion"+i));																																																																																																																																																																																																																																																																																																							
         		comanda.setCantidad(cantidad);
-        		//comanda.setPrecio(precio);
-        		//comanda.setSubTotal(subtotal);
-        		System.out.println(request.getParameter("notaCosina"));
-        		//comanda.setNotaCosina(request.getParameter("notaCosina"));
+        		comanda.setPrecio(precio);
+        		comanda.setSubTotal(subtotal);
+        		comanda.setTicket(ticket);
         		dao.comandaSave(comanda);
     		}
     		

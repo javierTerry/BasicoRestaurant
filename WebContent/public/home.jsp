@@ -358,6 +358,30 @@
                             </div>
                        </div>
                     </li>
+                    
+                    
+                    <li id="pageMenuAgregar">
+                    	 <div class="box">
+                                <div class="closePlane">
+                                    <a class="closeButton" href="#!/pageGallery"><img src="images/closeIcon.png" alt=""></a>
+                             </div>
+                            <div class="containerContent">
+                            <h2>Agregar Menu</h2>
+                                <div class="col1">
+                                    <div class="Btns2">
+                                        <a href="#" class="upBtn"></a>
+                                        <a href="#" class="downBtn"></a>
+                                    </div>
+                                    <div class="scroll2">
+                                       
+                                        <p class="padBot4">Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                                        <p class="padBot4">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus. Duis autem vel eum iriure dolor in hendrerit.</p>
+                                        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                                    </div>
+                                </div> 
+                            </div>
+                       </div>
+                    </li>
 				</ul>
 			</article>
 			<!--content end-->

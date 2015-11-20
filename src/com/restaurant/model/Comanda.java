@@ -6,7 +6,7 @@ public class Comanda {
 	private int precio = 1;
 	private int cantidad = 1;
 	private int subTotal = 1;
-	private String notaCosina = "Sin nota";
+	private String ticket = "Sin ticket";
 	
 	public String getDescripcion() {
 		return descripcion;
@@ -40,17 +40,17 @@ public class Comanda {
 		this.subTotal = subTotal;
 	}
 
-	public String getNotaCosina() {
-		return notaCosina;
+	public String getTicket() {
+		return ticket;
 	}
 
-	public void setNotaCosina(String notaCosina) {
-		this.notaCosina = notaCosina;
+	public void setTicket(String Ticket) {
+		this.ticket = Ticket;
 	}
 
 	@Override
     public String toString() {
-        return descripcion + "," + precio + "," + cantidad + "," + subTotal ;
+        return ticket + "," + descripcion + "," + precio + "," + cantidad + "," + subTotal ;
     }
 	
 

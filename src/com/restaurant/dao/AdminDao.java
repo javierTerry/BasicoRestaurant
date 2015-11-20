@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.restaurant.model.Admin;
 import com.restaurant.model.Comanda;
+import com.restaurant.model.Menu;
 import com.restaurant.model.Reservacion;
 //import com.daniel.util.DbUtil;
 
@@ -23,13 +24,21 @@ public class AdminDao {
     private String home = System.getProperty("user.home");
     private String archivoReservacion = "reservacion.txt";
     private String archivoComanda = "comanda.txt";
+    private String archivoMenu = "menus.txt";
+    
     public AdminDao() {
-        //connection = DbUtil.getConnection();
+    	try {
+			new FileWriter(home + "/"+ archivoMenu,true);
+			new FileWriter(home + "/"+ archivoReservacion,true);
+			new FileWriter(home + "/"+ archivoComanda,true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void writeFile(String cadena, String file) {
     	 try {
-             // Assume default encoding.
              FileWriter fileWriter =
                  new FileWriter(home + "/"+file,true);
 
@@ -56,103 +65,13 @@ public class AdminDao {
      	      
     	} catch(IOException ex) {
     		System.out.println(
-                    "Error writing to file '"
-                    + archivoReservacion + "'");
+                    "Error writing to file read'"
+                    + archivo + "'");
     	}
 		return bfFile;
     
     }
 
-    public void addAdmin(Admin admin) {
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into admins(firstname,lastname,dob,email) values (?, ?, ?, ? )");
-            // Parameters start with 1
-            preparedStatement.setString(1, admin.getFirstName());
-            preparedStatement.setString(2, admin.getLastName());
-            preparedStatement.setDate(3, new java.sql.Date(admin.getDob().getTime()));
-            preparedStatement.setString(4, admin.getEmail());
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deleteAdmin(int adminId) {
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from admins where adminid=?");
-            // Parameters start with 1
-            preparedStatement.setInt(1, adminId);
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateAdmin(Admin admin) {
-        try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("update admins set firstname=?, lastname=?, dob=?, email=?" +
-                            "where adminid=?");
-            // Parameters start with 1
-            preparedStatement.setString(1, admin.getFirstName());
-            preparedStatement.setString(2, admin.getLastName());
-            preparedStatement.setDate(3, new java.sql.Date(admin.getDob().getTime()));
-            preparedStatement.setString(4, admin.getEmail());
-            preparedStatement.setInt(5, admin.getAdminid());
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<Admin> getAllAdmins() {
-        List<Admin> admins = new ArrayList<Admin>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from admins");
-            while (rs.next()) {
-                Admin admin = new Admin();
-                admin.setAdminid(rs.getInt("adminid"));
-                admin.setFirstName(rs.getString("firstname"));
-                admin.setLastName(rs.getString("lastname"));
-                admin.setDob(rs.getDate("dob"));
-                admin.setEmail(rs.getString("email"));
-                admins.add(admin);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return admins;
-    }
-
-    public Admin getAdminById(int adminId) {
-        Admin admin = new Admin();
-        try {
-            PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from admins where adminid=?");
-            preparedStatement.setInt(1, adminId);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                admin.setAdminid(rs.getInt("adminid"));
-                admin.setFirstName(rs.getString("firstname"));
-                admin.setLastName(rs.getString("lastname"));
-                admin.setDob(rs.getDate("dob"));
-                admin.setEmail(rs.getString("email"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return admin;
-    }
-    
     public void reservacionSave(Reservacion reservacion){
     	this.writeFile(reservacion.toString(),archivoReservacion);
     	
@@ -181,7 +100,7 @@ public class AdminDao {
 	        }
     	} catch(IOException ex) {
     		System.out.println(
-                    "Error writing to file '"
+                    "Error writing to file reservaciones'"
                     + archivoReservacion + "'");
     	}  
     	return reservaciones;
@@ -215,10 +134,36 @@ public class AdminDao {
 	        }
     	} catch(IOException ex) {
     		System.out.println(
-                    "Error writing to file '"
+                    "Error writing to file comandas '"
                     + archivoReservacion + "'");
     	}  
     	return comandas;
+    	
+    }
+    
+    public List<Menu> menuRegristado() {
+    	BufferedReader bfFile = null;
+    	List<Menu> menus = new ArrayList<Menu>();
+    	try{
+    		bfFile = this.readFile(home + "/" + archivoMenu);
+  	        String dataRow;
+  	     
+  	        int i = 0; 
+  	  
+		  /*    while ((dataRow = bfFile.readLine()) != null ){
+		          Menu menu = new Menu();
+		    	  i++;
+		          
+		          String[] dataArray = dataRow.split(",");
+		          
+		          menus.add(menu);
+	        }*/
+    	} catch(Exception ex) {
+    		System.out.println(
+                    "Error writing to fileMenu '"
+                    + archivoReservacion + "'");
+    	}  
+    	return menus;
     	
     }
         
