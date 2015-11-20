@@ -232,7 +232,7 @@
                                                           
                                                           <label >
                                                          <span class="title1">Fecha:</span>
-                                                            <span class="bg"><input type="tel" value="" class="input" id="date" name="date" placeholder="dd/mm/yyyy"></span>
+                                                            <span class="bg"><input type="tel" value="" class="input" id="fecha" name="fecha" placeholder="dd/mm/yyyy"></span>
                                                           </label>
                                                          </div>
                                                          

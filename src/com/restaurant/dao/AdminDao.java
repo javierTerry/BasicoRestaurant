@@ -2,6 +2,7 @@ package com.restaurant.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.restaurant.model.Admin;
 import com.restaurant.model.Comanda;
@@ -22,25 +25,41 @@ public class AdminDao {
 
     private Connection connection;
     private String home = System.getProperty("user.home");
-    private String archivoReservacion = "reservacion.txt";
+    private String archivoReservacion = "reservaciones/reservacion.txt";
     private String archivoComanda = "comanda.txt";
     private String archivoMenu = "menus.txt";
-    
+    protected String path;
     public AdminDao() {
     	try {
-			new FileWriter(home + "/"+ archivoMenu,true);
-			new FileWriter(home + "/"+ archivoReservacion,true);
-			new FileWriter(home + "/"+ archivoComanda,true);
-		} catch (IOException e) {
+    		Date date = new Date();
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    		String formattedDate = sdf.format(date);
+    		
+    		path = "/restaurant/" + formattedDate + "/";
+    		File folder = new File(home + "/" +path);
+    		if ( !folder.exists()){
+    			folder.mkdirs();
+    			File folderMenu = new File(home + path +"menus/"+ archivoComanda);
+    			folderMenu.mkdirs();
+    			File folderReservacion = new File(home + path + archivoReservacion);
+    			folderReservacion.mkdirs();
+    			File folderComanda = new File(home + path +"comandas/"+ archivoComanda);
+    			folderComanda.mkdirs();
+    			
+    		}
+    		
+    		
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
     
-    public void writeFile(String cadena, String file) {
+    public void writeFile(String cadena, String file, Boolean append) {
     	 try {
              FileWriter fileWriter =
-                 new FileWriter(home + "/"+file,true);
+                 new FileWriter(home + path +file,append);
 
              // Always wrap FileWriter in BufferedWriter.
              BufferedWriter bufferedWriter =
@@ -53,7 +72,7 @@ public class AdminDao {
          catch(IOException ex) {
              System.out.println(
                  "Error writing to file '"
-                 + archivoReservacion + "'");
+                 + file + "'");
              // Or we could just do this:
              // ex.printStackTrace();
          }
@@ -61,7 +80,7 @@ public class AdminDao {
     public BufferedReader readFile(String archivo){
     	BufferedReader bfFile = null;
     	try{
-    		bfFile = new BufferedReader(new FileReader(home + "/"+ archivo));
+    		bfFile = new BufferedReader(new FileReader(home + path + archivo));
      	      
     	} catch(IOException ex) {
     		System.out.println(
@@ -72,8 +91,8 @@ public class AdminDao {
     
     }
 
-    public void reservacionSave(Reservacion reservacion){
-    	this.writeFile(reservacion.toString(),archivoReservacion);
+    public void reservacionSave(Reservacion reservacion, Boolean append){
+    	this.writeFile(reservacion.toString(),archivoReservacion, append);
     	
     }
     
@@ -90,12 +109,13 @@ public class AdminDao {
 	    	  i++;
 	          
 	          String[] dataArray = dataRow.split(",");
-	          reservacion.setNombre(dataArray[0]);
-	          reservacion.setEmail(dataArray[1]);
-	          reservacion.setTelefono( Integer.parseInt(dataArray[2]));
-	          reservacion.setNoPersonas(Integer.parseInt(dataArray[3]));
-	          reservacion.setHoraReservacion(dataArray[4]);
-	          reservacion.setFecha(dataArray[5]);
+	          reservacion.setUuid(dataArray[0]);
+	          reservacion.setNombre(dataArray[1]);
+	          reservacion.setEmail(dataArray[2]);
+	          reservacion.setTelefono( Integer.parseInt(dataArray[3]));
+	          reservacion.setNoPersonas(Integer.parseInt(dataArray[4]));
+	          reservacion.setHoraReservacion(dataArray[5]);
+	          reservacion.setFecha(dataArray[6]);
 	          reservaciones.add(reservacion);
 	        }
     	} catch(IOException ex) {
@@ -107,8 +127,8 @@ public class AdminDao {
     	
     }
     
-    public void comandaSave(Comanda comanda){
-    	this.writeFile(comanda.toString(),archivoComanda);
+    public void comandaSave(Comanda comanda, Boolean append){
+    	this.writeFile(comanda.toString(),archivoComanda, append);
     	
     }
     

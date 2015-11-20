@@ -2,6 +2,7 @@ package com.restaurant.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.restaurant.dao.AdminDao;
 import com.restaurant.model.Admin;
 import com.restaurant.model.Comanda;
-import com.restaurant.model.Menu;
 import com.restaurant.model.Reservacion;
 
 public class AdminController extends HttpServlet {
@@ -31,17 +31,29 @@ public class AdminController extends HttpServlet {
         String forward="";
         String action = request.getParameter("action");
 
-        if (action.equalsIgnoreCase("delete")){
-            int userId = Integer.parseInt(request.getParameter("userId"));
-            //dao.deleteAdmin(userId);
-            forward = LIST_USER;
- //           request.setAttribute("users", dao.getAllAdmins());    
- 
+        if (action.equalsIgnoreCase("reservacionEliminar")){
+        	List<Reservacion> reservaciones = dao.listaReservacion();
+        	String uuid = request.getParameter("uuid");
+        	Boolean append = false;
+        	for(Reservacion reservacion : reservaciones){
+        		
+        		System.out.println(reservacion.getUuid());
+        		if( !uuid.equalsIgnoreCase(reservacion.getUuid())){
+        			System.out.println(uuid);
+        			dao.reservacionSave(reservacion, append);
+        		}
+        		
+        		
+        		append = true;
+        	}
+            
+            forward = HOME;
         } else if (action.equalsIgnoreCase("listReservacion")){
         	List<Reservacion> reservaciones = dao.listaReservacion();
        
         	forward = "/public/listReservacion.jsp";
             request.setAttribute("reservaciones", reservaciones);
+        
         } else if (action.equalsIgnoreCase("conta")){
         	List<Comanda> comandas = dao.contabilidad();
         	int total = 0;
@@ -52,12 +64,9 @@ public class AdminController extends HttpServlet {
             request.setAttribute("comandas", comandas);
             request.setAttribute("total", total);
         } else if (action.equalsIgnoreCase("adminMenu")){
-        	Menu menu = new Menu();
-        	List<Menu> menus = dao.menuRegristado();
+        	
         	forward = "/public/adminMenu.jsp";
             request.setAttribute("mensajeError", "no hay menu disponible");
-            request.setAttribute("accionAgregar", "agregar");
-            request.setAttribute("menus", menus);
         	
         } else {
             forward = HOME;
@@ -72,7 +81,6 @@ public class AdminController extends HttpServlet {
     	String action = request.getParameter("action");
     	
     	if (action.equalsIgnoreCase("comanda") ){
-    		String ticket = request.getParameter("ticket");
     		
     		for (int i = 1 ; i <6 ; i++){
     			AdminDao dao = new AdminDao();
@@ -86,8 +94,7 @@ public class AdminController extends HttpServlet {
         		comanda.setCantidad(cantidad);
         		comanda.setPrecio(precio);
         		comanda.setSubTotal(subtotal);
-        		comanda.setTicket(ticket);
-        		dao.comandaSave(comanda);
+        		dao.comandaSave(comanda, true);
     		}
     		
     		
@@ -100,12 +107,14 @@ public class AdminController extends HttpServlet {
             
             reservacion.setNombre(request.getParameter("name"));
             reservacion.setEmail(request.getParameter("email"));
-            reservacion.setFecha(request.getParameter("date"));
+            reservacion.setFecha(request.getParameter("fecha"));
             reservacion.setHoraReservacion(request.getParameter("horario"));
             reservacion.setNoPersonas(Integer.parseInt(noPersonas));
-           // reservacion.setTelefono(Integer.parseInt(telefono));
+            reservacion.setTelefono(Integer.parseInt(telefono));
+            UUID uuid = UUID.randomUUID();
+            reservacion.setUuid(uuid.toString());
             
-            dao.reservacionSave(reservacion);
+            dao.reservacionSave(reservacion,true);
     	}
     	
         RequestDispatcher view = request.getRequestDispatcher(HOME);

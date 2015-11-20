@@ -81,6 +81,7 @@
 									    <th><font color="white">Horario</th> 
 									    <th><font color="white">Fecha</th>
 									    <th><font color="white">No de Personas </font></th>
+									    <th><font color="white">Acciones </font></th>
 								  	</tr>
                                 <% for(Reservacion reservacion : reservaciones) { %>
                                     <tr>
@@ -89,6 +90,7 @@
 									    <td><font color="white"><%= reservacion.getHoraReservacion()%></td> 
 									    <td><font color="white"><%= reservacion.getFecha() %></td>
 									    <td><font color="white"><%= reservacion.getNoPersonas()%></td>
+									    <td><font color="white"><a href="AdminController?action=reservacionEliminar&uuid=<%= reservacion.getUuid()%>"> Eliminar  </a></td>
 									    </font>
 								  	</tr>
                               	<%	}%>

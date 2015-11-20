@@ -8,6 +8,9 @@ public class Reservacion {
 	private int noPersonas = 1;
 	private String horaReservacion = "";
 	private String fecha = "";
+	private String uuid = ""; 
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -44,9 +47,17 @@ public class Reservacion {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
+	
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 	@Override
     public String toString() {
-        return nombre + "," + email + "," + telefono + "," + noPersonas + "," + horaReservacion + "," + fecha;
+        return uuid + "," + nombre + "," + email + "," + telefono + "," + noPersonas + "," + horaReservacion + "," + fecha;
     }
 	
 
