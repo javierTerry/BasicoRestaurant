@@ -69,47 +69,6 @@
 			<!--content -->
 			<article id="content"><div class="ic"></div>
             <div class="iconHolder">
-         	<div id="img_slider">
-            <ul>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon1.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon2.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon3.jpg" alt=""></a></div>
-                </li>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon4.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon5.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon6.jpg" alt=""></a></div>
-                </li>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon7.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon8.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon9.jpg" alt=""></a></div>
-                </li>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon1.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon2.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon3.jpg" alt=""></a></div>
-                </li>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon4.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon5.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon6.jpg" alt=""></a></div>
-                </li>
-                <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon7.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon8.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon9.jpg" alt=""></a></div>
-                </li>
-               <li>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon4.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon6.jpg" alt=""></a></div>
-                    <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon5.jpg" alt=""></a></div>
-                </li>
-             
-            </ul>
-        	</div>
-            	
              	<ul>
                      <li id="pageAbout">
 					   <div class="box">
