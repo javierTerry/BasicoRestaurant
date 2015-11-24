@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.restaurant.dao.AdminDao;
 import com.restaurant.model.Admin;
 import com.restaurant.model.Comanda;
+import com.restaurant.model.ComandaContabilidad;
+import com.restaurant.model.Menu;
 import com.restaurant.model.Reservacion;
 
 public class AdminController extends HttpServlet {
@@ -30,6 +32,9 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward="";
         String action = request.getParameter("action");
+        String modulo = request.getParameter("modulo");
+        
+        modulo = modulo == null ? "" : modulo; 
 
         if (action.equalsIgnoreCase("reservacionEliminar")){
         	List<Reservacion> reservaciones = dao.listaReservacion();
@@ -48,25 +53,49 @@ public class AdminController extends HttpServlet {
         	}
             
             forward = HOME;
+        } else if (action.equalsIgnoreCase("menuEliminar")){
+            	List<Menu> menus = dao.listaMenu();
+            	String uuid = request.getParameter("id");
+            	Boolean append = false;
+            	for(Menu menu : menus){
+            		
+            		if( !uuid.equalsIgnoreCase(menu.getId())){
+            			dao.menuSave(menu, append);
+            		}
+            		
+            		append = true;
+            	}
+                
+                forward = HOME;
+        } else if (action.equalsIgnoreCase("conta") && modulo.equalsIgnoreCase("ver") ){
+        	String uuid = request.getParameter("uuid");
+        		//Comanda comanda = dao.readComanda(uuid)
+            	List<Comanda> comandas = dao.readComanda(uuid);
+            	
+            	request.setAttribute("comandas", comandas);
+                forward = "/public/listComandas.jsp";
+                
         } else if (action.equalsIgnoreCase("listReservacion")){
         	List<Reservacion> reservaciones = dao.listaReservacion();
        
         	forward = "/public/listReservacion.jsp";
             request.setAttribute("reservaciones", reservaciones);
         
-        } else if (action.equalsIgnoreCase("conta")){
-        	List<Comanda> comandas = dao.contabilidad();
+        } else if (action.equalsIgnoreCase("conta") && !modulo.equalsIgnoreCase("ver")){
+        	List<ComandaContabilidad> comandas = dao.contabilidad();
         	int total = 0;
-        	for (Comanda comanda : comandas){
+        	for (ComandaContabilidad comanda : comandas){
         		total = total + comanda.getSubTotal();
         	}
         	forward = "/public/contabilidad.jsp";
             request.setAttribute("comandas", comandas);
             request.setAttribute("total", total);
         } else if (action.equalsIgnoreCase("adminMenu")){
+        	List<Menu> menus = dao.listaMenu();
         	
         	forward = "/public/adminMenu.jsp";
             request.setAttribute("mensajeError", "no hay menu disponible");
+            request.setAttribute("menus", menus);
         	
         } else {
             forward = HOME;
@@ -79,10 +108,12 @@ public class AdminController extends HttpServlet {
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String action = request.getParameter("action");
+    	String ticket = request.getParameter("ticket");
     	
     	if (action.equalsIgnoreCase("comanda") ){
     		
     		for (int i = 1 ; i <6 ; i++){
+    			System.out.println("ticket " + ticket + " - " + i);
     			AdminDao dao = new AdminDao();
     			Comanda comanda = new Comanda();
         		String sCantidad =  (request.getParameter("cantidad"+i).isEmpty()) ? "1" : request.getParameter("cantidad"+i) ;
@@ -94,11 +125,24 @@ public class AdminController extends HttpServlet {
         		comanda.setCantidad(cantidad);
         		comanda.setPrecio(precio);
         		comanda.setSubTotal(subtotal);
-        		dao.comandaSave(comanda, true);
+        		dao.comandaSave(comanda, ticket, true);
     		}
     		
     		
+    	} else if  (action.equalsIgnoreCase("menuAgregar")) {
+    		AdminDao dao = new AdminDao();
+            Menu menu = new Menu();
+            UUID uuid = UUID.randomUUID();
+            
+            menu.setDescripcion( request.getParameter("descripcion"));
+            menu.setPrecio( Integer.parseInt(request.getParameter("precio")));
+            menu.setFecha( request.getParameter("fechaCreacion"));
+            menu.setId(uuid.toString());
+            
+            dao.menuSave(menu,true);
+    	
     	} else {
+    	
     		AdminDao dao = new AdminDao();
             Reservacion reservacion = new Reservacion();
             String noPersonas =  (request.getParameter("numPersonas").isEmpty()) ? "1" : request.getParameter("numPersonas") ;

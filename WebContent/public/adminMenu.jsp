@@ -71,20 +71,18 @@
                             <div class="containerContent">
                                 <h2>Menu</h2>
                                 <div class="col1 padBot1">
-                                <a href="http://localhost:8080/BasicoRestaurant//#!/pageMenuAgregar">Agregar</a>
+                                <a href="http://localhost:8080/BasicoRestaurant//#!/pageMenuAgregar"><h4>Agregar</h4></a>
                                 <table style="width:100%">
 									<tr>
-									    <th><font color="white">ID Producto</th>
 									    <th><font color="white">Descripcion</th> 
 									    <th><font color="white">Precio</th>
 									    <th><font color="white">Acciones </font></th>
 								  	</tr>
                                 <% for(Menu menu : menus) { %>
                                     <tr>
-                                    	<td><font color="white"><%= menu.getId() %> </font></td>
 									    <td><font color="white"><%= menu.getDescripcion() %> </font></td>
 									    <td><font color="white"><%= menu.getPrecio() %></font></td> 
-									    <td><font color="white"><%= menu.getEditar() %></font></td>
+									    <td><font color="white"><a href ="AdminController?action=menuEliminar&id=<%= menu.getId()%>"> Eliminar  </a></font></td>
 									    
 								  	</tr>
                               	<%	}%>
@@ -98,7 +96,7 @@
                             
                           <div class="containerContent">
                             <div class="col5 magRight3">
-                            <h2>Reservaciones</h2>
+                            <h5>Menu</h5>
                                 <div class="wrapper">
                                         <form action="AdminController?action=reservacion" id="ContactForm" method="post">	
                                         <div class="success"> Contact form submitted!&nbsp;We will be in touch soon.</div>	

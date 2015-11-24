@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.Timestamp" %>
+<%@ page import = "java.util.UUID" %>
+
 <% java.util.Date date = new java.util.Date();%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +37,7 @@
  <div class="headerHolder">
        <header>
        <div class="logoHolder">
-            <h1><a href="#!/pageGallery" id="logo">oratorio</a></h1>
+            <h1><a href="#!/pageGallery" id="logo">Restaurant</a></h1>
        </div>
         </header>
         <div class="followHolder">
@@ -75,8 +78,8 @@
                  </div> 
 			<!--content -->
 			<article id="content"><div class="ic"></div>
-             <div class="iconHolder">
-         <div id="img_slider">
+            <div class="iconHolder">
+         	<div id="img_slider">
             <ul>
                 <li>
                     <div class="picHold"><a class="pic" rel="Appendix" href="images/image-blank.png"><span class="zoomSp"></span><img src="images/galleryIcon1.jpg" alt=""></a></div>
@@ -119,7 +122,7 @@
         </div>
             <a href="#" id="next"><img src="images/gallNext1.png" alt=""></a>
             <a href="#" id="prev"><img src="images/gallPrev1.png" alt=""></a>
-    </div>
+   		</div>
 				<ul>
 					
                      <li id="pageAbout">
@@ -131,7 +134,7 @@
                                 <h2>Welcome to Our Studio!</h2>
                                 <div class="col1 padBot1">
                                     <figure class="_fig1">
-                                        <img src="images/page1pic1.png" alt="">
+                                        <img src="images/page1pic12.png" alt="">
                                     </figure>
                                     <div class="col2">
                                         <p>Cream is one of <a class="_link1" href="http://blog.templatemonster.com/category/free-website-templates/">free website templates</a> created by TemplateMonster.com team. This website template is optimized for 1280X1024 screen resolution. It is also XHTML &amp; CSS valid. The PSD source files of this <a class="_link1" href="http://blog.templatemonster.com/2012/05/07/free-full-javascript-animated-template-web-design-studio/">Cream Template</a> are available for free for the registered members of TemplateMonster.com. Feel free to get them!</p>
@@ -153,8 +156,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                                    <a class="moreButton" href="#!/pageMore">Read More</a>
-                                
                             </div>
                        </div>	
 					</li>
@@ -202,7 +203,6 @@
                             <h2>Reservaciones</h2>
                                 <div class="wrapper">
                                         <form action="AdminController?action=reservacion" id="ContactForm" method="post">	
-                                        <div class="success"> Contact form submitted!&nbsp;We will be in touch soon.</div>	
        								 		<fieldset class="left">	
                                                         <div class="block">
                                                         <label class="name padRight3">
@@ -250,7 +250,6 @@
                                     </div>
                             </div>  
                             <div class="col5">
-                                <h2>Contacts</h2>
                                 <div class="padBot5">
                                         <figure class="google_map"></figure> 
                                     </div>
@@ -280,7 +279,7 @@
                                 <div class="wrapper">
                                         <form action="AdminController?action=comanda" id="ComandaForm" method="post">
                                         		
-                                        	<input type="text" id="ticket" name="ticket" style="visibility: hidden">
+                                        	<input type="text" id="ticket" name="ticket" style="visibility: hidden" value ="<%=UUID.randomUUID() %>">
        								 		<fieldset class="left">	
        								 		<table style="width:100%" bgcolor="#00FF00" border="1">
 												<tr bgcolor="#00FF00">
@@ -290,32 +289,32 @@
 												    
 											  	</tr>
 			                                    <tr>
-												    <td><span class="bg"><input type="text" id="descripcion1" name="descripcion1" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="cantidad1" name="cantidad1" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="precio1" name="precio1" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="descripcion1" name="descripcion1" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="cantidad1" name="cantidad1" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" value="" id="precio1" name="precio1" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="descripcion2" name="descripcion2" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="cantidad2" name="cantidad2" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="precio2" name="precio2" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="descripcion2" name="descripcion2" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="cantidad2" name="cantidad2" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" value="" id="precio2" name="precio2" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="descripcion3" name="descripcion3" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="cantidad3" name="cantidad3" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="precio3" name="precio3" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="descripcion3" name="descripcion3" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="cantidad3" name="cantidad3" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" value="" id="precio3" name="precio3" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="descripcion4" name="descripcion4" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="cantidad4" name="cantidad4" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="precio4" name="precio4" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="descripcion4" name="descripcion4" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="cantidad4" name="cantidad4" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" value="" id="precio4" name="precio4" size="20" maxlength="20" placeholder="Precio"></span></td>
 											  	</tr>
 											  	<tr>
-												    <td><span class="bg"><input type="text" id="descripcion5" name="descripcion5" size="30" maxlength="40" placeholder="Descripcion"></span></td>
-												    <td><span class="bg"><input type="text" id="cantidad5" name="cantidad" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
-												    <td><span class="bg"><input type="text" id="precio5" name="precio5" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="descripcion5" name="descripcion5" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="cantidad5" name="cantidad5" size="5" maxlength="3" placeholder="Cantidad"></span></td> 
+												    <td><span class="bg"><input type="text" value="" id="precio5" name="precio5" size="20" maxlength="20" placeholder="Precio"></span></td>
 												    
 											  	</tr>
 			                              	</table>
@@ -336,49 +335,48 @@
 					</li>
 					
                   
-                	<li id="pageMore">
-                    	 <div class="box">
-                                <div class="closePlane">
-                                    <a class="closeButton" href="#!/pageGallery"><img src="images/closeIcon.png" alt=""></a>
-                             </div>
-                            <div class="containerContent">
-                            <h2>Lorem Ipsum</h2>
-                                <div class="col1">
-                                    <div class="Btns2">
-                                        <a href="#" class="upBtn"></a>
-                                        <a href="#" class="downBtn"></a>
-                                    </div>
-                                    <div class="scroll2">
-                                       
-                                        <p class="padBot4">Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                        <p class="padBot4">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus. Duis autem vel eum iriure dolor in hendrerit.</p>
-                                        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                    </div>
-                                </div> 
-                            </div>
-                       </div>
-                    </li>
-                    
-                    
                     <li id="pageMenuAgregar">
                     	 <div class="box">
                                 <div class="closePlane">
-                                    <a class="closeButton" href="#!/pageGallery"><img src="images/closeIcon.png" alt=""></a>
+                                    
                              </div>
                             <div class="containerContent">
                             <h2>Agregar Menu</h2>
-                                <div class="col1">
-                                    <div class="Btns2">
-                                        <a href="#" class="upBtn"></a>
-                                        <a href="#" class="downBtn"></a>
+                            <div class=" magRight3">
+                            
+                            <% Timestamp dateMenu = new Timestamp(date.getTime());
+                            	String ticketMenu = dateMenu.toString();
+                            %>
+                            <font color="white"> <h5>Fecha Creacion <%=ticketMenu %> </h5> </font>
+                                <div class="wrapper">
+                                        <form action="AdminController?action=menuAgregar" id="menuForm" method="post">
+                                        		
+                                        	<input type="text" id="fechaCreacion" name="fechaCreacion" style="visibility: hidden" value ="<%=ticketMenu %>">
+       								 		<fieldset class="left">	
+       								 		<table style="width:100%" bgcolor="#00FF00" border="1">
+												<tr bgcolor="#00FF00">
+												    <th bgcolor="#5D7B9D" style="width:60%"><font color="#fff">Descripcion</font></th>
+												    <th bgcolor="#5D7B9D" style="width:15%"><font color="#fff">Cantidad</font></th>
+											  	</tr>
+			                                    <tr>
+												    <td><span class="bg"><input type="text" value="" id="descripcion" name="descripcion" size="30" maxlength="40" placeholder="Descripcion"></span></td>
+												    <td><span class="bg"><input type="text" value="" id="precio" name="precio" size="20" maxlength="20" placeholder="Precio"></span></td>
+												    
+											  	</tr>
+			                              	</table>
+                                            <div class="formButtons">
+                                             <div class="formBtn">
+                                                   <input type="submit" value="Submit">
+                                             </div>
+                                             <div class="formBtn">
+                                                    <a href="#" data-type="reset" class="moreButton">Clear</a>
+                                             </div>
+                                            </div> 
+   								  		    </fieldset>
+                                            </form>
                                     </div>
-                                    <div class="scroll2">
-                                       
-                                        <p class="padBot4">Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                        <p class="padBot4">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus. Duis autem vel eum iriure dolor in hendrerit.</p>
-                                        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                                    </div>
-                                </div> 
+                            </div>
+                                
                             </div>
                        </div>
                     </li>

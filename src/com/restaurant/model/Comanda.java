@@ -3,10 +3,10 @@ package com.restaurant.model;
 public class Comanda {
 	
 	private String descripcion = "";
-	private int precio = 1;
-	private int cantidad = 1;
-	private int subTotal = 1;
-	private String ticket = "Sin ticket";
+	private int precio = 0;
+	private int cantidad = 0;
+	private int subTotal = 0;
+	private String ticket = "No aplica";
 	
 	public String getDescripcion() {
 		return descripcion;

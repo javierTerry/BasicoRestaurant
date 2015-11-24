@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
-<%@ page import="com.restaurant.model.ComandaContabilidad"%>
+<%@ page import="com.restaurant.model.Comanda"%>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +30,7 @@
 	<![endif]-->
 </head>
 <body>
-<% List<ComandaContabilidad> comandas = (List<ComandaContabilidad>) request.getAttribute("comandas"); %>
+<% List<Comanda> comandas = (List<Comanda>) request.getAttribute("comandas"); %>
 <div class="glob">
 <div class="page_spinner"></div>  
 <div class="main">
@@ -57,7 +60,7 @@
 		                  <li >
 		                  	<a href="http://localhost:8080/BasicoRestaurant/" ><span class="mText">back</span></a> </br></br>
 		                  	<span class="mText">Admin</span>
-		                  	</br><span class="mText">Comandas</span>
+		                  	</br><span class="mText">Reservaciones</span>
 		                  </li>
 		   			</ul>
 				</nav>
@@ -65,35 +68,29 @@
              
 			<!--content -->
 			<article id="content"><div class="ic"></div>
-				<div class="iconHolder"	>
-             		<ul>
+            <div class="iconHolder1">
+         	
+            	
+             	<ul>
                      <li id="pageAbout">
 					   <div class="box">
                             <div class="containerContent">
-                                <h2>Lista de comandas Realizadas</h2>
-                                
-                                <table style="width:100%">
-									<tr>
-									    <th><font color="white">Total dia</th>
-									    <th><font color="white">Num. de comandas</th> 
-								  	</tr>
-								  	<tr>
-									    <th><font color="white"><%= request.getAttribute("total")%></th>
-									    <th><font color="white"><%= comandas.size() %></th> 
-								  	</tr>
-								  	</table>
+                                <h2>Detalle Comanda</h2>
                                 <div class="col1 padBot1">
                                 <table style="width:100%">
 									<tr>
-									    <th><font color="white">Ticket</th>
-									    <th><font color="white">Subtotal</th> 
-									    <th><font color="white">Accion</th>
+									    <th><font color="white">Descripcion</th>
+									    <th><font color="white">Cantidad</th> 
+									    <th><font color="white">Precio </font></th>
+									    <th><font color="white">Subtotal </font></th>
 								  	</tr>
-                                <% for(ComandaContabilidad comanda : comandas) { %>
+                                <% for(Comanda comanda : comandas) { %>
                                     <tr>
-									    <td><font color="white"><%= comanda.getTicket()%> </td>
-									    <td><font color="white"><%= comanda.getSubTotal()%></td> 
-									    <td><font color="white"> <a href="#"> Ver  </a></td>
+                                    	
+									    <td><font color="white"><%= comanda.getDescripcion()%> </td>
+									    <td><font color="white"><%= comanda.getCantidad()%></td> 
+									    <td><font color="white"><%= comanda.getPrecio() %></td>
+									    <td><font color="white"><%= comanda.getSubTotal() %></td>
 									    </font>
 								  	</tr>
                               	<%	}%>
@@ -102,7 +99,7 @@
                             </div>
                        </div>	
 					</li>
-				</div>
+				</ul>
 			</article>
 		
 			<!--content end-->

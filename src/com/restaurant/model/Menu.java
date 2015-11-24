@@ -5,6 +5,7 @@ public class Menu {
 	private String id;
 	private String descripcion = "";
 	private int precio = 1;
+	private String fecha = "";
 	private String editar = "editar";
 	private String agregar = "agregar";
 	
@@ -40,10 +41,19 @@ public class Menu {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
 
 	@Override
     public String toString() {
-        return id + "," + descripcion + "," + precio ;
+        return id + "," + descripcion + "," + precio + "," +fecha;
     }
 	
 
